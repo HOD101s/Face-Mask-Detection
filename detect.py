@@ -27,10 +27,10 @@ classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0)
 while True:
     ret,img = cap.read()
-    faces = classifier.detectMultiScale(cv2.cvtColor(img,cv2.COLOR_BGR2GRAY),1.3,5)
+    faces = classifier.detectMultiScale(cv2.cvtColor(img,cv2.COLOR_BGR2GRAY),1.1,2)
 
     for face in faces:
-        slicedImg = img[face[1]-5:face[1]+face[3]+5,face[0]-5:face[0]+face[2]+5]
+        slicedImg = img[face[1]:face[1]+face[3],face[0]:face[0]+face[2]]
         pred = model.predict(prepImg(img))
         pred = np.argmax(pred)
 
